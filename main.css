@@ -47,3 +47,19 @@ div.menu:hover {
 h1 {
     text-align: center;
 }
+
+footer {
+    background-color: rgb(71, 71, 71);
+    color: black;
+    font-family: Arial;
+    margin: 0px;
+    text-align:right ;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+main {
+    margin: 10px 20px 45px
+}
