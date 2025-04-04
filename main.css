@@ -8,6 +8,7 @@ body {
 a { 
     text-decoration: none; 
     color: rgb(161, 205, 231);
+    transition: 1s 2s; 
 } 
  
 a:link { 
@@ -22,7 +23,8 @@ a:visited {
  
 a:hover { 
     color: rgb(48, 48, 48); 
-    text-decoration: underline; 
+    text-decoration: underline;
+    transition: 0.3s;  
 } 
  
 a:active { 
