@@ -28,6 +28,22 @@ a:hover {
 } 
  
 a:active { 
-    color: rgb(0, 110, 255); 
+    color: rgb(253, 210, 255); 
     opacity: 1; 
+}
+
+div.menu {
+    border: 7px solid #ff00c8;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.menu:hover {
+    background-color: #ffffff ;
+    box-shadow: 0 0 15px #ffffff80;
+}
+
+h1 {
+    text-align: center;
 }
