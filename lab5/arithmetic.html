@@ -59,11 +59,39 @@
         function showAuthor(){
                 let author = "Автор страницы: \nЗубрицкий И.";
                 alert(author)
-            }
+        }
+        function showhello(){
+            let author = "хелло мир \nманера крутит мир ";
+            alert(author)
+        }     
+        function difference(){
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a - b;
+                alert('Разность ' + a + ' и ' + b + ' равна ' + result);
+        }  
+        function composition(){
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a * b;
+                alert('Произведение ' + a + ' и ' + b + ' равно ' + result);
+        }
+        function division(){
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a / b;
+                alert('Деление ' + a + ' и ' + b + ' равно ' + result);
+        }
     </script>
 </head>
 <body>
-    <header onclick="showAuthor()">
+    <header onclick="showhello()">
         НГТУ, ФБ, Лабораторная работа 5
     </header>
     <main>
@@ -78,6 +106,9 @@
 
         <div class="message" onclick="showSum()">Найти сумму чисел</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+        <div class="message" onclick="difference()">Найти разность чисел</div>
+        <div class="message" onclick="composition()">Найти произведение чисел</div>
+        <div class="message" onclick="division()">Найти деление чисел</div>
     </main>
     <footer>
         &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
