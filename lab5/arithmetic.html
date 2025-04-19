@@ -8,6 +8,11 @@
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
     <style>
+         body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
         label {
             margin-bottom: 24px;
             font-size: 1.1em;
@@ -26,13 +31,13 @@
         .message {
             cursor: pointer;
             width: 260px;
-            height: 44px;
+            height: 35px;
             border-radius: 22px;
             border: none;
             background: linear-gradient(90deg, #626262 0%, #141414 100%);
             color: white;
             text-align: center;
-            line-height: 44px;
+            line-height: 34px;
             margin-top: 20px;
         }
         .message:hover {
@@ -43,13 +48,16 @@
     </style>
     <script>
         function showSum() {
-            const a = 5154;
-            const b = 7891;
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
             let result = a + b;
             alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
         }
         function showAuthor(){
-                let author = "Австор страницы: \nЗубрицкий И.";
+                let author = "Автор страницы: \nЗубрицкий И.";
                 alert(author)
             }
     </script>
@@ -59,6 +67,15 @@
         НГТУ, ФБ, Лабораторная работа 5
     </header>
     <main>
+        <label>
+            Первое число:
+            <input type="number" value="5154" id="numberA">
+        </label>
+        <label>
+            Второе число:
+            <input type="number" value="7891" id="numberB">
+        </label>
+
         <div class="message" onclick="showSum()">Найти сумму чисел</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
     </main>
