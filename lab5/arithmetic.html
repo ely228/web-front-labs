@@ -8,10 +8,10 @@
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
     <style>
-         body {
+        body {
             font-family: 'Segoe UI', 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0; 
         }
         label {
             margin-bottom: 24px;
@@ -42,9 +42,28 @@
         }
         .message:hover {
             background: lightgray;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
         }
 
+        div.buttons {
+            margin-bottom: 20px;
+        }
+
+        input[type="button"] {
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background: linear-gradient(90deg, #626262 0%, #141414 100%);
+            color: white;
+        }
+        input[type="button"]:hover {
+            background: lightgray
+        }
+
+        .output {
+            text-align: center;
+            transition: background-color 0.4s, color 0.4s, border-style 0.4s, border-color 0.4s;
+            user-select: none;
+        }
     </style>
     <script>
         function showSum() {
@@ -149,6 +168,14 @@
             let result = Math.pow(a, b);
             alert(a + ' в степени ' + b + ' равно ' + result);
         }
+
+        function changeOutput(buttonNum, backColor, textColor, textBorder){
+                    let output = document.getElementById('output');
+                    output.innerHTML = "Нажата кнопка " + buttonNum;
+                    output.style.backgroundColor = backColor;
+                    output.style.color = textColor;
+                    output.style.borderStyle = textBorder;
+                }
     </script>
 </head>
 <body>
@@ -171,6 +198,15 @@
         <div class="message" onclick="composition()">Найти произведение чисел</div>
         <div class="message" onclick="showDiv()">Найти отношение чисел</div>
         <div class="message" onclick="showPower()">Найти степень чисел</div>
+
+        <div class="buttons">
+            <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow')">
+            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime')">
+            <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'yellow', 'black')">
+            <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'lightgray', 'green')">
+        </div>
+        <div id="output"></div>
+
     </main>
     <footer>
         &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
