@@ -17,18 +17,25 @@
 
     <main>
         <div id="mtable"></div>
-    </main>
+        <input type="number" id="mult" placeholder="Умножить на" value="7">
+        <input type="number" id="start" placeholder="Начать с" value="1">
+        <input type="number" id="end" placeholder="Закончить на" value="10">
+        <button onclick="showMutipleTable()">Показать таблицу</button>
+      </main>
 
-    <script>
+      <script>
         function showMutipleTable() {
-        const tbl = document.getElementById("mtable");
-        tbl.innerHTML = "<h1>Таблица умножения</h1>";
-        for (let i = 1; i <= 10; i++) {
-            let s  = `<div>${i} * 7= ${i* 7}</div>`;
-            tbl.innerHTML += s;
-            }
+          const m = document.getElementById("mult").value || 7;
+          const start = parseInt(document.getElementById("start").value || 1);
+          const end = parseInt(document.getElementById("end").value || 10);
+          const tbl = document.getElementById("mtable");
+          tbl.innerHTML = "";
+          const a = Math.min(start, end), b = Math.max(start, end);
+          for (let i = a; i <= b; i++) {
+            tbl.innerHTML += `<div>${m} × ${i} = ${m * i}</div>`;
+          }
         }
-    </script>
+      </script>
 
     <footer>
         &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
