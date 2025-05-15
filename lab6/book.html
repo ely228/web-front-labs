@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зубрицкий И. Книги</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        .book {
+        margin: 25px;
+        padding: 10px;
+        }
+        .bestseller {
+        background: #a8a8a8;
+        border-radius: 6px;
+        }
+        .outofstock {
+        opacity: 0.4;
+        }
+        .label {
+            font-weight: bolder;
+        }
+        .label.bestseller {
+            color: #ff0000;
+        }
+    </style>
+    </head>
+    <body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+        <hr>
+    </header>
+
+    <main>
+        <div id="booklist"></div>
+    </main>
+
+    <script>
+        const books = [
+        {name: "<h3>Паутина Шарлотты</h3>", author: "Элвин Брукс Уайт", year: 2020, price: 30, bestseller: true, inStock: true},
+        {name: "<h3>Тайна по имени Лагерфельд</h3>", author: "Лорен Аллен-Карон", year: 2021, price: 45, bestseller: false, inStock: false},
+        {name: "<h3>Дневник Анны Франк</h3>", author: "Анна Франк", year: 2019, price: 50, bestseller: true, inStock: true},
+        {name: "<h3>1984</h3>", author: "Джордж Оруэлл", year: 2022, price: 15, bestseller: false, inStock: true},
+        {name: "<h3>Джейн Эйр</h3>", author: "Шарлотта Бронте", year: 2018, price: 60, bestseller: true, inStock: false},
+        {name: "<h3>Прислуга</h3>", author: "Кэтрин Стокетт", year: 2023, price: 70, bestseller: false, inStock: true},
+        {name: "<h3>Голодные игры</h3>", author: "Сьюзен Коллинз", year: 2020, price: 35, bestseller: false, inStock: true},
+        {name: "<h3>Ночь</h3>", author: "Эли Визель", year: 2017, price: 40, bestseller: true, inStock: false},
+        {name: "<h3>Рождественская песнь в прозе</h3>", author: "Чарльз Диккенс", year: 2024, price: 55, bestseller: true, inStock: true},
+        {name: "<h3>Ромео и Джульетта</h3>", author: "Уильям Шекспир", year: 2021, price: 20, bestseller: false, inStock: true}
+        ];
+        function showBooks() {
+            const list = document.getElementById("booklist");
+            list.innerHTML = "";
+            books.forEach(book => {
+                const div = document.createElement("div");
+                div.className = "book" + (book.bestseller ? " bestseller" : "") + (book.inStock ? "" : " outofstock");
+                div.innerHTML = `<strong>${book.name}</strong> (${book.year})<br>
+                    Автор: ${book.author}<br>
+                    Цена: $ ${book.price} <br>
+                    ${book.inStock ? "В наличии" : "Нет в наличии"}`;
+                if (book.bestseller) {
+                    const label = document.createElement("div");
+                    label.textContent = "Бестселлер";
+                    label.className = "label bestseller";
+                    div.appendChild(label);
+                }
+                list.appendChild(div);
+            });
+        }
+    </script>
+
+    <footer>
+        &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
+    </footer>
+    
+</body>
+</html>
