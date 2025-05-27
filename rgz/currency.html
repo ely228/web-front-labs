@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Курс валют — Индонезийская рупия</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f9f9f9;
+        color: #222;
+        line-height: 1.6;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        }
+
+        header {
+        background-color: #87c1f1;
+        color: #fff;
+        padding: 15px;
+        font-size: 14px;
+        }
+
+        nav ul {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        }
+
+        nav ul li a {
+        color: #eff5fd;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+        color: #ffffff;
+        text-decoration: none;
+        }
+
+        main {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+        }
+
+        h1, h2 {
+        color: #ff6f00;
+        margin: 30px 0 10px;
+        }
+
+        p {
+        margin-bottom: 15px;
+        }
+
+        a {
+        color: #ff6f00;
+        text-decoration: none;
+        }
+
+        a:hover {
+        text-decoration: underline;
+        }
+
+        img {
+        max-width: 100%;
+        border-radius: 6px;
+        margin: 15px 0;
+        }
+
+        .back-to-top {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        background-color: #ff6f00;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50%;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        transition: background 0.3s ease;
+        }
+
+        .back-to-top:hover {
+        background-color: #87c1f1;
+        text-decoration: none;
+        }
+
+        footer {
+        display: flex;
+        background-color: #fff;
+        color: #777;
+        padding: 20px;
+        font-size: 13px;
+        border-top: 1px solid #ccc;
+        }
+
+        .rate-info {
+        margin-bottom: 20px;
+        font-size: 1.2em;
+        }
+
+        .calc-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        }
+
+        input, button {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        font-size: 1em;
+        }
+
+        input {
+        border: 1px solid #ccc;
+        width: 200px;
+        }
+        button {
+        background: #ff6f00;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }
+        button:hover {
+        background: #87c1f1;
+        }
+        canvas {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        html, body {
+        height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+        <ul>
+            <li><a href="index.html">О компании</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="currency.html">Курс валют</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="video.html">Видео</a></li>
+        </ul>
+        </nav>
+    </header>
+
+    <main>
+    <h1>Калькулятор: RUB ⟺ IDR</h1>
+    <div class="rate-info">
+      Текущий курс: <span id="rate">загрузка...</span>
+    </div>
+
+    <div class="calc-container">
+        <div>
+            <label>Российские рубли (RUB): 
+            <input type="number" id="rub" placeholder="Введите RUB" min="0">
+            </label>
+            <button onclick="toIdr()">⇒ IDR</button>
+        </div>
+        <div>
+            <label>Индонезийские рупии (IDR): 
+            <input type="number" id="idr" placeholder="Введите IDR" min="0">
+            </label>
+            <button onclick="toRub()">⇒ RUB</button>
+        </div>
+        <p id="result" style="font-weight:bold;"></p>
+    </div>
+
+    <h2>Динамика курса IDR за месяц</h2>
+    <canvas id="chart" width="800" height="400"></canvas>
+</main>
+
+    <script>
+        let rate = null;
+        let chart = null;
+
+        async function loadRate() {
+        try {
+            const res = await fetch("https://www.cbr-xml-daily.ru/daily_json.js");
+            const data = await res.json();
+            rate = data.Valute.IDR.Value / data.Valute.IDR.Nominal;
+            document.getElementById("rate").innerHTML =
+            `1 IDR = ${rate.toFixed(4)} RUB<br>1 RUB = ${(1 / rate).toFixed(2)} IDR`;
+        } catch (error) {
+            document.getElementById("rate").textContent = "Ошибка загрузки курса";
+            rate = 0.0062; 
+        }
+        }
+
+        function valid(num) {
+        return num !== "" && !isNaN(num) && parseFloat(num) >= 0;
+        }
+
+        async function toIdr() {
+        if (!rate) await loadRate();
+        const rub = document.getElementById("rub").value;
+        if (!valid(rub)) {
+            document.getElementById("result").textContent = "Введите корректную сумму в RUB";
+            return;
+        }
+        const res = parseFloat(rub) / rate;
+        document.getElementById("result").innerHTML = `${rub} RUB = ${res.toFixed(2)} IDR`;
+        document.getElementById("idr").value = res.toFixed(2);
+        }
+
+        async function toRub() {
+        if (!rate) await loadRate();
+        const idr = document.getElementById("idr").value;
+        if (!valid(idr)) {
+            document.getElementById("result").textContent = "Введите корректную сумму в IDR";
+            return;
+        }
+        const res = parseFloat(idr) * rate;
+        document.getElementById("result").innerHTML = `${idr} IDR = ${res.toFixed(2)} RUB`;
+        document.getElementById("rub").value = res.toFixed(2);
+        }
+
+        async function loadChart() {
+        let labels = [];
+        let data = [];
+
+        for (let i = 30; i >= 0; i--) {
+            let date = new Date();
+            date.setDate(date.getDate() - i);
+            let dd = String(date.getDate()).padStart(2, '0');
+            let mm = String(date.getMonth() + 1).padStart(2, '0');
+            let yyyy = date.getFullYear();
+            let url = `https://www.cbr-xml-daily.ru/archive/${yyyy}/${mm}/${dd}/daily_json.js`;
+
+            try {
+            const res = await fetch(url);
+            if (res.ok) {
+                const json = await res.json();
+                let dayRate = json.Valute.IDR.Value / json.Valute.IDR.Nominal;
+                labels.push(`${dd}.${mm}`);
+                data.push(dayRate);
+            }
+            } catch {
+            console.log(`Нет данных за ${dd}.${mm}.${yyyy}`);
+            }
+        }
+
+        draw(labels, data);
+        }
+
+        function draw(labels, data) {
+        const ctx = document.getElementById('chart').getContext('2d');
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: 'IDR к RUB',
+                data: data,
+                backgroundColor: 'rgba(0, 119, 204, 0.5)',
+                borderColor: 'rgba(0, 119, 204, 1)',
+                borderWidth: 1
+            }]
+            },
+            options: {
+            onClick: (e, el) => {
+                if (el.length > 0) {
+                const i = el[0].index;
+                alert(`Дата: ${labels[i]}\nКурс: ${data[i].toFixed(4)} RUB`);
+                }
+            },
+            scales: {
+                y: {
+                beginAtZero: false
+                }
+            }
+            }
+        });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+        await loadRate();
+        await loadChart();
+        });
+    </script>
+
+    <a href="#top" class="back-to-top">⤊</a>
+
+    <footer>
+        <div>
+            2025 © ПАО «УК «Арсагера»
+            <p>Все права защищены законодательством РФ.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
