@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>УК Арсагера — Новости</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+      padding-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #87c1f1;
+      color: #fff;
+      padding: 20px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #eff5fd;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: #ffffff;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h1 {
+      color: #ff6f00;
+      margin-bottom: 20px;
+    }
+
+    .news-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .news-card h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #ff6f00;
+    }
+
+    .news-date {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .news-full {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .read-more {
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #87c1f1;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background-color: #ff6f00;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: #87c1f1;
+    }
+
+    footer {
+      background-color: #fff;
+      color: #777;
+      padding: 20px;
+      font-size: 13px;
+      border-top: 1px solid #ccc;
+      text-align: left;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+  </style>
+</head>
+<body id="top">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="currency.html">Курс валют</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="video.html">Видео</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Новости компании</h1>
+
+    <div class="news-card">
+      <h2>Меры защиты финансового рынка</h2>
+      <p class="news-date">28 марта 2022</p>
+      <p>Центральный банк Российской Федерации регулярно публикует разъяснения по специальным мерам защиты экономики и 
+        работе финансовой системы в условиях санкционных ограничений.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+            На официальном сайте Банка России существует специальный раздел «Меры защиты финансового рынка», посвященный, 
+            в том числе, следующим темам – «Ответы на часто задаваемые вопросы о работе финансовой системы России», 
+            «Разъяснения по специальным мерам защиты экономики».
+            <p>
+            В раздел включена информация о действующих антикризисных программах (например, кредитные каникулы для населения и 
+            индивидуальных предпринимателей), трансграничных переводах и платежах, об использовании банковских карт и пр.
+            </p>
+            <br>
+            <p>
+            Сведения на регулярной основе оперативно обновляются в зависимости от поступающих запросов.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Новое в расчете НДФЛ с 2021 года</h2>
+      <p class="news-date">8 июля 2021</p>
+      <p>С 2021 года налог на доходы физических лиц (НДФЛ) рассчитывается по новому в связи с принятием Федерального закона от 23.11.2020 №372-ФЗ.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>Данным законом введены в НК РФ понятия «основная налоговая база» и «совокупность налоговых баз». Совокупность 
+            налоговых баз – это сумма налоговых баз, которые указаны в пункте 2.1 статьи 210 НК РФ.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Осторожно! Действуют мошенники!</h2>
+      <p class="news-date">25 июня 2020</p>
+      <p>Поступила информация, что от имени компании действуют мошенники: представляясь аналитической компанией «Арсагера», 
+        они предлагают внести средства на счет, удвоить их за свой счет и управлять средствами данного портфеля, отслеживая сигналы рынка. </p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>Сообщаем, что данная активность не имеет к УК Арсагера никакого отношения. Компания Арсагера не осуществляет подобные звонки.
+            Стать клиентом УК Арсагера Вы можете только через сервис <a href="https://lkp.arsagera.ru/users/sign_in" target="_blank">Личного кабинета</a>,
+             либо через агентов и партнеров УК Арсагера.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Изменение наименования Компании</h2>
+      <p class="news-date">21 октября 2016</p>
+      <p>С  11 октября 2016 года изменилось наименование Компании.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>
+            Новое полное наименование:  Публичное акционерное общество «Управляющая компания «Арсагера».
+        </p>
+        <br>
+        <p>
+            Новое сокращенное наименование: ПАО «УК «Арсагера».
+        </p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>УК «Арсагера» вступила в НАУФОР</h2>
+      <p class="news-date">2 августа 2016</p>
+      <p>«УК «Арсагера» вступила в НАУФОР</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>28 июля 2016 года «УК «Арсагера» стала членом Национальной ассоциации участников фондового рынка.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>ИПИФА «Арсагера – акции Мира» - новый инвестиционный продукт</h2>
+      <p class="news-date">27 июня 2016</p>
+      <p>24 июня 2016 года завершилось формирование ИПИФА «Арсагера – акции Мира».</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>
+            Фонд ориентирован на инвестиции в акции крупнейших мировых компаний. Приобрести паи фонда можно в период открытия интервалов:
+        </p>
+        <br>
+        <p>
+            с 05 по 18 марта;
+        </p>
+        <p>
+            с 05 по 18 июня;
+        </p>
+        <p>
+            с 05 по 18 сентября;
+        </p>
+        <p>
+            с 05 по 18 декабря.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Расширение функционала Личного кабинета пайщика</h2>
+      <p class="news-date">12 мая 2016</p>
+      <p>У клиентов компании появилась возможность отслеживать актуальность своих анкетных данных в Личном кабинете.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>Любое действие с паями оформляется документами с указанием анкетных данных клиента. Неактуальность анкетных данных может быть основанием для отказа в проведении операции. </p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Изменения в правила фондов ценных бумаг</h2>
+      <p class="news-date">3 марта 2016</p>
+      <p>Зарегистрированы изменения и дополнения в правила фондов под управлением УК «Арсагера», инвестирующих в ценные бумаги.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>Наиболее значимые изменения касаются:</p>
+        <li>возможности обмена паев в рамках всех фондов ценных бумаг;</ul>
+        <li>исключения надбавки при приобретении паев по заявке, поданной напрямую в УК «Арсагера»;</li>
+        <li>сокращение размера скидок при погашении паев по заявке, поданной напрямую в УК «Арсагера»;</li>
+        <li>нижения максимального размера расходов на услуги специализированного депозитария, регистратора, аудитора, оценщика;</li>
+        <li>снижения размера «прочих расходов фонда».</li>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>16 февраля 2016 г. состоялось собрание владельцев инвестиционных паев ЗПИФН «Арсагера - ЖС»</h2>
+      <p class="news-date">26 февраля 2016</p>
+      <p>16 февраля 2016 г. состоялось общее собрание владельцев инвестиционных паев ЗПИФН «Арсагера - ЖС» в форме заочного голосования.</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>На собрании было принято решение продлить срок дествия договора доверительного управления Фондом до 31 декабря 2020 года, 
+            а также  утвердить изменения в Правила Фонда, связанные с продлением срока  действия договора доверительного управления Фондом, 
+            с изменением инвестиционной декларации, введением положений о возможности частичного погашения паев без подачи владельцами паев 
+            заявок на погашение, с расширением перечня расходов Управляющей компании, подлежащих оплате за счет имущества Фонда, с 
+            увеличением максимального размера расходов, подлежащих оплате за счет имущества Фонда, с увеличением размера 
+            вознаграждения лица, осуществляющего прекращение Фонда.</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <h2>Компенсация расходов + подарок при приобретении паев с отправкой документов по почте</h2>
+      <p class="news-date">14 июля 2011</p>
+      <p>Компенсация расходов + подарок при приобретении паев с отправкой документов по почте</p>
+      <button class="read-more" onclick="toggleNews(this)">Читать далее</button>
+      <div class="news-full">
+        <p>С 13 июля 2011 года каждый пайщик, который по почте направил комплект документов для приобретения инвестиционных паев 
+            фондов ценных бумаг и приобрел паев на сумму не менее 10 000 рублей, имеет право на компенсацию своих почтовых и 
+            нотариальных расходов в размере до 1 000 рублей. Кроме того, дополнительно к компенсации выплачивается подарок в размере 1 000 рублей.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div>
+        2025 © ПАО «УК «Арсагера»
+        <p>Все права защищены законодательством РФ.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNews(button) {
+      const fullText = button.nextElementSibling;
+      if (fullText.style.display === 'block') {
+        fullText.style.display = 'none';
+        button.textContent = 'Читать далее';
+      } else {
+        fullText.style.display = 'block';
+        button.textContent = 'Скрыть';
+      }
+    }
+  </script>
+
+  <a href="#top" class="back-to-top">⤊</a>
+</body>
+</html>
+
