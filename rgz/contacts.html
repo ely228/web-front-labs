@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Контакты — Арсагера</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f9f9f9;
+        color: #222;
+        line-height: 1.6;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background-color: #87c1f1;
+        color: #fff;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
+
+    nav ul li a {
+        color: #eff5fd;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    nav ul li a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    main {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h1, h2 {
+        color: #ff6f00;
+        margin: 30px 0 10px;
+        font-size: 1.2em;
+    }
+
+    a {
+        color: #ff6f00;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+        border-radius: 6px;
+        margin: 15px 0;
+    }
+
+    .back-to-top {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        background-color: #ff6f00;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50%;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        transition: background 0.3s ease;
+    }
+
+    .back-to-top:hover {
+        background-color: #87c1f1;
+        text-decoration: none;
+    }
+
+    footer {
+        display: flex;
+        background-color: #fff;
+        color: #777;
+        padding: 20px;
+        font-size: 13px;
+        border-top: 1px solid #ccc;
+    }
+    .contact-container {
+        display: flex;
+    }
+    .contact-block {
+        background: #fff;
+        font-size: 0.8em;
+    }
+    .contact-block p {
+        margin: 10px 0;
+        font-size: 1.1em;
+    }
+    .map-block {
+        height: 50%;
+    }
+    iframe {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin: 15px 0px 0px 30px;
+    }
+
+    html, body {
+        height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="currency.html">Курс валют</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="video.html">Видео</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<main>
+    <h1>Контактные данные</h1>
+    <div class="contact-container">
+        <div class="contact-block">
+        <p>
+            Фактический адрес: 194021, Санкт-Петербург, ул. Шателена, дом 26, литер А помещ. 1-Н, БЦ «Ренессанс», 8-й этаж.
+        </p>
+        <p>
+            Почтовый адрес: 194021, Санкт-Петербург, ул. Шателена, д. 26, литер А помещ. 1-Н.
+        </p>
+        <br>
+        <p>
+            Режим работы: с 10:00 до 19:00, суббота, воскресенье - выходные.
+        </p>
+        <p>Телефоны:
+            <br>
+            +7 (812) 313-05-30
+            <br>
+            +7 (812) 313-05-31
+            <br>
+            <p>+7 (981) 682-75-01</p>
+        <p>Факс:        +7 (812) 313-05-33</p>
+
+        <p>E-mail:       clients@arsagera.ru</p>
+        <br>
+        <p>Вы можете задать любой вопрос нашим <a href="https://arsagera.ru" target="_blank">онлайн - консультантам</a>.</p>
+
+        
+        
+        </div>
+        <div class="map-block">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab777eaab5322a8ed30e63248d126916c1c4c993688c4e8b6da7bd68cf9cdb677&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
+        </div>
+    </div>
+</main>
+
+    <footer>
+        <div>
+            2025 © ПАО «УК «Арсагера»
+            <p>Все права защищены законодательством РФ.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
