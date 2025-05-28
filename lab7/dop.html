@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз и параметры погоды</title>
+    <link rel="stylesheet" href="../main.css">
+    <style>
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 200px;
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            overflow-x: auto;
+        }
+
+        .bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: 30px;
+            background-color: blue;
+            color: white;
+            font-size: 12px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .bar.humidity {
+            background-color: greenyellow;
+        }
+
+        .label {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .current-info {
+            margin: 20px;
+            padding: 10px;
+            background-color: #4a4a4a;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4a4a4a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Прогноз погоды (доп. задание)
+        <hr>
+    </header>
+
+    <main>
+        <button onclick="getAdvancedWeather()">Загрузить данные</button>
+
+        <div class="current-info" id="current-weather"></div>
+
+        <h2>Температура (°C)</h2>
+        <div class="chart-container" id="temp-chart"></div>
+
+        <h2>Влажность (%)</h2>
+        <div class="chart-container" id="humidity-chart"></div>
+    </main>
+
+    <footer>
+        &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
+    </footer>
+
+    <script>
+        function getAdvancedWeather() {
+            const url = "https://api.open-meteo.com/v1/forecast?" +
+                "latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m" +
+                "&current_weather=true&timezone=Asia%2FBangkok";
+
+            fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                    const temps = json.hourly.temperature_2m.slice(0, 24); // на 1 день
+                    const humidity = json.hourly.relative_humidity_2m.slice(0, 24);
+                    const times = json.hourly.time.slice(0, 24).map(t => t.slice(11, 16));
+
+                    const maxTemp = Math.max(...temps);
+                    const maxHumidity = Math.max(...humidity);
+
+                    const tempChart = document.getElementById("temp-chart");
+                    const humidityChart = document.getElementById("humidity-chart");
+
+                    tempChart.innerHTML = "";
+                    humidityChart.innerHTML = "";
+
+                    for (let i = 0; i < 24; i += 3) {
+                        const tempBar = document.createElement("div");
+                        tempBar.className = "bar";
+                        tempBar.style.height = (temps[i] / maxTemp * 100) + "%";
+                        tempBar.innerHTML = `<div>${temps[i]}°</div><div class="label">${times[i]}</div>`;
+                        tempChart.appendChild(tempBar);
+
+                        const humidBar = document.createElement("div");
+                        humidBar.className = "bar humidity";
+                        humidBar.style.height = (humidity[i] / maxHumidity * 100) + "%";
+                        humidBar.innerHTML = `<div>${humidity[i]}%</div><div class="label">${times[i]}</div>`;
+                        humidityChart.appendChild(humidBar);
+                    }
+
+                    const current = json.current_weather;
+                    document.getElementById("current-weather").innerHTML = `
+                        <strong>Текущее значение:</strong><br>
+                        Температура: ${current.temperature} °C<br>
+                        Ветер: ${current.windspeed} км/ч<br>
+                        Время: ${current.time.replace("T", " ")}
+                    `;
+                })
+                .catch(err => {
+                    document.getElementById("current-weather").textContent = "Ошибка при получении данных.";
+                    console.error(err);
+                });
+        }
+    </script>
+</body>
+</html>
