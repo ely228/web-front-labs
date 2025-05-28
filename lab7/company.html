@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зубрицкий И. Котировки ТМК</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        .positive { 
+            color: green; 
+        }
+        .negative { 
+            color: red; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+
+    <main>
+        <button onclick="showStocks()">Курс акций ТМК</button>
+        <table border="1" id="stock-table">
+            <tr><th>Дата</th><th>Цена, руб</th><th>Изменение</th></tr>
+        </table>
+        <div id="stock-summary"></div>
+    </main>
+
+    <script>
+        const dates = [
+            "2025-05-01", "2025-05-02", "2025-05-03", "2025-05-04", "2025-05-05",
+            "2025-05-06", "2025-05-07", "2025-05-08", "2025-05-09", "2025-05-10"
+        ];
+        const prices = [78.50, 78.90, 79.10, 78.70, 78.65, 79.40, 79.55, 80.00, 80.20, 79.95];
+
+        function showStocks() {
+            const table = document.getElementById("stock-table");
+
+            for (let i = 0; i < prices.length; i++) {
+                const row = document.createElement("tr");
+
+                const dateCell = document.createElement("td");
+                const priceCell = document.createElement("td");
+                const diffCell = document.createElement("td");
+
+                dateCell.textContent = dates[i];
+                priceCell.textContent = prices[i].toFixed(2);
+
+                if (i > 0) {
+                    const diff = (prices[i] - prices[i - 1]).toFixed(2);
+                    diffCell.textContent = diff > 0 ? "+" + diff : diff;
+                    diffCell.className = diff > 0 ? "positive" : (diff < 0 ? "negative" : "");
+                } else {
+                    diffCell.textContent = "-";
+                }
+
+                row.appendChild(dateCell);
+                row.appendChild(priceCell);
+                row.appendChild(diffCell);
+                table.appendChild(row);
+            }
+
+            const max = Math.max(...prices).toFixed(2);
+            const min = Math.min(...prices).toFixed(2);
+            const avg = (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(2);
+
+            document.getElementById("stock-summary").innerHTML =
+                `<p>Средняя цена: ${avg}₽</p><p>Максимум: ${max}₽</p><p>Минимум: ${min}₽</p>`;
+
+            event.target.style.display = "none";
+        }
+    </script>
+
+    <footer>
+        &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
