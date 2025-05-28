@@ -9,19 +9,37 @@
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-16x16.png">
 </head>
+    <style>
+        .new-block {
+            border: 2px solid green;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #e7ffe7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
 <body>
     <header>
-        НГТУ, ФБ, Лабораторная работа 7
+        НГТУ, ФБ, Добавление блоков
         <hr>
     </header>
-    
+
     <main>
-        <ul>
-        </ul>
+        <button onclick="addNewBlock()">Добавить блок</button>
     </main>
 
     <footer>
         &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
     </footer>
+
+    <script>
+        function addNewBlock() {
+            let newBlock = document.createElement("div");
+            newBlock.className = "new-block";
+
+            document.querySelector('main').appendChild(newBlock);
+            }
+    </script>
 </body>
 </html>
