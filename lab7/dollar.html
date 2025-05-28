@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зубрицкий И. Курс доллара</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+        <hr>
+    </header>
+
+    <main>
+        <button onclick="showExchange()">Показать курс доллара</button>
+        <table border="1" id="dollar-table"></table>
+        <div id="detail"></div>
+    </main>
+
+    <script>
+        const exchange = [87.21, 86.70, 86.92, 86.44, 85.91, 85.48, 85.36, 85.22, 85.04, 84.72];
+        function showExchange() {
+            const table = document.getElementById("dollar-table");
+            table.innerHTML = "";
+            for (let i = 0; i < exchange.length; i++) {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = exchange[i];
+                row.appendChild(cell);
+                table.appendChild(row);
+            }
+
+            const sum = exchange.reduce((a, b) => a + b, 0);
+            const avg = (sum / exchange.length).toFixed(2);
+            const detail = document.getElementById("detail");
+            detail.textContent = "Средний курс: " + avg;
+
+            event.target.style.display = "none";
+        }
+    </script>
+
+    <footer>
+        &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
