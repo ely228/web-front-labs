@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зубрицкий И. Прогноз погоды</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+
+    <main>
+        <button onclick="getWeather()">Погода сегодня</button>
+        <div id="weather-info"></div>
+    </main>
+
+    <script>
+        function getWeather() {
+            fetch("https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok")
+                .then(res => res.json())
+                .then(json => {
+                    const time = json.hourly.time;
+                    const temp = json.hourly.temperature_2m;
+                    const getHourTemp = hour => {
+                        const index = time.findIndex(t => t.endsWith(`${hour}:00`));
+                        return `${hour}:00 — ${temp[index]}°C`;
+                    };
+
+                    const result = `
+                        <p>${getHourTemp("08")}</p>
+                        <p>${getHourTemp("12")}</p>
+                        <p>${getHourTemp("20")}</p>
+                    `;
+                    document.getElementById("weather-info").innerHTML = result;
+                });
+        }
+    </script>
+
+    <footer>
+        &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
