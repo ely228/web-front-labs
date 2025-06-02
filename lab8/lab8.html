@@ -21,15 +21,21 @@
     <main>
         <div id="app">
             <h1 :title="messageRu">{{ message }}</h1>
-            <h1>Счётчик: {{ counter }}</h1>
-            <button v-if="counter < 10" @click="incCounter">++</button>
-            <button v-if="counter > 0" @click="decCounter">--</button>
+            <p>Счётчик: <span class="badge text-bg-secondary fs-7">{{ counter }}</span></p>
+            <div class="mb-3">
+                <button @click="incCounter" v-if="counter < 10" class="btn btn-success me-3">
+                    Увеличить
+                </button>
+                <button @click="decCounter" v-if="counter > 0" class="btn btn-danger">
+                    Уменьшить
+                </button>
+            </div>
             <hr>
 
             <h2>Пользователь</h2>
-            <div>Имя: {{ user.name }}</div>
-            <div>Возраст: {{ user.age }}</div>
-            <div>Телефон: {{ user.tel }}</div>
+            <div>Имя: <b>{{ user.name }}</b></div>
+            <div>Возраст: <b>{{ user.age }}</b></div>
+            <div>Телефон: <b>{{ user.tel }}</b></div>
 
             <hr>
 
@@ -37,8 +43,11 @@
                 <div class="card-body">
                     <h2 class = "card-title">Цветы</h2>
                     <ul class="list-group">
-                        <li v-for="(flower, id) in flowers" class="list-group-item">
-                            {{ flower }} <button @click="edit(id,flower)">?</button>
+                        <li v-for="(flower, id) in flowers" class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ flower }}
+                            <button @click="edit(id,flower)" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-pen"></i>
+                            </button>
                         </li>
                     </ul>
                 </div>
