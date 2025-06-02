@@ -18,7 +18,16 @@
 
     <main>
         <div id="app">
-            <h1 :title="messageRus">{{ message }}</h1>
+            <h1 :title="messageRu">{{ message }}</h1>
+            <h1>Счётчик: {{ counter }}</h1>
+            <button v-if="counter < 10" @click="incCounter">++</button>
+            <button v-if="counter > 0" @click="decCounter">--</button>
+            <hr>
+
+            <h2>Пользователь</h2>
+            <div>Имя: {{ user.name }}</div>
+            <div>Возраст: {{ user.age }}</div>
+            <div>Телефон: {{ user.tel }}</div>
         </div>
     </main>
 
@@ -27,7 +36,21 @@
             data() {
                 return {
                     message: "Hello!",
-                    messageRus: "Привет!"
+                    messageRu: "Привет!",
+                    counter: 0,
+                    user: {
+                        name: 'Вася',
+                        age: '18',
+                        tel: '222-33-44'
+                    },
+                }
+            },
+            methods: {
+                incCounter() {
+                    this.counter++
+                },
+                decCounter() {
+                    this.counter--
                 }
             }
         }).mount("#app")
