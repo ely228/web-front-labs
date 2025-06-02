@@ -8,16 +8,7 @@
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-16x16.png">
-</head>
-    <style>
-        .new-block {
-            border: 2px solid green;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #e7ffe7;
-            border-radius: 10px;
-        }
-    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
     <header>
@@ -26,9 +17,21 @@
     </header>
 
     <main>
-        <ul>
-        </ul>
+        <div id="app">
+            <h1 :title="messageRus">{{ message }}</h1>
+        </div>
     </main>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    message: "Hello!",
+                    messageRus: "Привет!"
+                }
+            }
+        }).mount("#app")
+    </script>
 
     <footer>
         &copy; Зубрицкий Илья, ФБИ-34, 2 курс, 2025
